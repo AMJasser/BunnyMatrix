@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/error");
 dotenv.config({ path: "./config/config.env" });
 
 const index = require("./routes/index");
+const upload = require("./routes/upload");
 
 const app = express();
 
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
+app.use("/upload", upload);
 
 app.use(errorHandler);
 

@@ -16,12 +16,15 @@
     
     <body>
         <div id="intro">
-            <h1>BunnyMatrix</h1>
+            <h1>upload file</h1>
             <p>
                 We use data visualization to help you predict the success of a
                 company based on KPIs.
             </p>
-            <a href="/upload">Get Started</a>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit">
+            </form>
         </div>
     </body>
 </html>
