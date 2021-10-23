@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script>
+            var dummyData = [
+                {
+                    x: new Date("01/01/2012"),
+                    y: 2004.52,
+                },
+                {
+                    x: new Date("02/01/2012"),
+                    y: 2499.5255,
+                },
+            ];
+
+            /*dummyData.forEach(function (set) {
+    set.x = new Date(set.x).getTime();
+});*/
+
+            console.log(dummyData);
+
+            const data = {
+                datasets: [
+                    {
+                        label: "Scatter Dataset",
+                        data: dummyData,
+                        backgroundColor: "rgb(255, 99, 132)",
+                    },
+                ],
+            };
+
+            const config = {
+                type: "scatter",
+                data: data,
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            ticks: {
+                                callback: (value, index, values) => {
+                                    date = new Date(value)
+                                    return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+                                },
+                            },
+                        },
+                    },
+                },
+            };
+
+            function download(content, fileName, contentType) {
+                var a = document.createElement("a");
+                var file = new Blob([JSON.stringify(content)], {
+                    type: contentType,
+                });
+                a.href = URL.createObjectURL(file);
+                a.download = fileName;
+                a.click();
+            }
+            //download(dummyData, "json.txt", "text/plain");
+
+            window.onload = function () {
+                var ctx = document.getElementById("myChart").getContext("2d");
+
+                var myChart = new Chart(ctx, config);
+            };
+        </script>
+    </body>
+</html>

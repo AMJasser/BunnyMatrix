@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #0d1b2a;
+    position: relative;
+    color: white;
+    font-family: 'Sarala', sans-serif;
+}
+
+body #intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+body #intro h1 {
+    color: #1F45FC;
+    font-weight: bold;
+    font-size: 100px;
+    font-family: 'Quantico', sans-serif;
+}
+
+body #intro p {
+    color: #FFF;
+    font-size: 40px;
+    width: 815px;
+    margin: 0px 0 100px 0;
+}
+
+body #intro a {
+    font-size: 30px;
+    background-color: #B1DDF1;
+    color: #FFF;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+body #intro a:hover {
+    border: 5px solid #006C67;
+    background: transparent;
+    color: #006C67;
+}
+
+body header h1 {
+    color: #1F45FC;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Quantico', sans-serif;
+    padding: 25px 0 25px 50px;
+}
+
+body header div {
+    padding-left: 50px;
+    background-color: #0057D9;
+}
+
+body header div h2 {
+    padding: 20px 0 5px 0;
+}
+
+body header div nav a {
+    position: relative;
+}
+
+body header div nav a:nth-child(2) {
+    margin-left: 10px;
+}
+
+body header div nav a.selected::after {
+    content: "";
+    display: block;
+    width: 120%;
+    height: 2px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #ffffff;
+}
