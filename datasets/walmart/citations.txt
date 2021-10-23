@@ -1,2 +1,0 @@
-walmart-2012-2013:
-https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/data
