@@ -1,55 +1,25 @@
-var dummyData = [
-    {
-        x: new Date("01/01/2012"),
-        y: 2004.52,
-    },
-    {
-        x: new Date("02/01/2012"),
-        y: 2499.5255,
-    },
-];
+var csvParsed = [];
 
-/*dummyData.forEach(function (set) {
-    set.x = new Date(set.x).getTime();
-});*/
+// data processing to make referecing values in dataset easier
+function dataPreprocessor(row) {
+    // function to convert string to date
+    //var parseTime = d3.timeParse("%B %d, %Y");
+    //parseTime("June 30, 2015"); // Tue Jun 30 2015 00:00:00 GMT-0700 (PDT)
 
-console.log(dummyData);
+    //Citation: https://github.com/d3/d3-time-format
 
-const data = {
-    datasets: [
-        {
-            label: "Scatter Dataset",
-            data: dummyData,
-            backgroundColor: "rgb(255, 99, 132)",
-        },
-    ],
-};
+    var parseDate = d3.timeParse("%m/%d/%Y");
 
-const config = {
-    type: "scatter",
-    data: data,
-    options: {
-        responsive: true,
-        scales: {
-            /*xAxes: [
-                {
-                    ticks: {
-                        callback: function (value, index, values) {
-                            return "$";
-                        },
-                    },
-                },
-            ],*/
-            x: {
-                ticks: {
-                    callback: (value, index, values) => {
-                        return new Date(value);
-                    },
-                },
-            },
-        },
-    },
-};
+    return {
+        date: parseDate(row["Date"]),
+        weekly_sales: +row["Weekly_Sales"],
+        isHoliday: row["IsHoliday"],
+    };
+}
+
+var data;
+
+var config;
 
 function download(content, fileName, contentType) {
     var a = document.createElement("a");
@@ -63,7 +33,64 @@ function download(content, fileName, contentType) {
 //download(dummyData, "json.txt", "text/plain");
 
 window.onload = function () {
+    d3.csv("./datasets/walmart/short_walmart.csv", dataPreprocessor).then(
+        function (dataset) {
+            for (let i = 0; i < dataset.length; i++) {
+                dict = {};
+                dict["x"] = dataset[i].date;
+                dict["y"] = dataset[i].weekly_sales;
+                csvParsed.push(dict);
+            }
+            run();
+        }
+    );
+};
+
+function fixDataAndConfig() {
+    data = {
+        datasets: [
+            {
+                label: "Scatter Dataset",
+                data: csvParsed,
+                backgroundColor: "rgb(255, 99, 132)",
+            },
+        ],
+    };
+
+    config = {
+        type: "scatter",
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    ticks: {
+                        callback: (value, index, values) => {
+                            date = new Date(value);
+                            return (
+                                (date.getMonth() > 8
+                                    ? date.getMonth() + 1
+                                    : "0" + (date.getMonth() + 1)) +
+                                "/" +
+                                (date.getDate() > 9
+                                    ? date.getDate()
+                                    : "0" + date.getDate()) +
+                                "/" +
+                                date.getFullYear()
+                            );
+                        },
+                    },
+                },
+            },
+        },
+    };
+} 
+
+function run() {
+    console.log("Hello");
+    fixDataAndConfig();
+
     var ctx = document.getElementById("myChart").getContext("2d");
 
     var myChart = new Chart(ctx, config);
-};
+}
