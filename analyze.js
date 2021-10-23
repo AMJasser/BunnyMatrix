@@ -92,5 +92,9 @@ function run() {
 
     var ctx = document.getElementById("myChart").getContext("2d");
 
+    console.log(Chart.defaults);
+
+    Chart.defaults.color = "#FFF"
+
     var myChart = new Chart(ctx, config);
 }

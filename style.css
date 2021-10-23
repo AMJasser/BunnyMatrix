@@ -68,23 +68,39 @@ body header div {
 
 body header div h2 {
     padding: 20px 0 5px 0;
+    font-size: 30px;
 }
 
 body header div nav a {
     position: relative;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 17px;
+}
+
+body header div nav a.selected {
+    color: rgba(255, 255, 255, 1);
 }
 
 body header div nav a:nth-child(2) {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 body header div nav a.selected::after {
     content: "";
     display: block;
-    width: 120%;
+    width: 100%;
     height: 2px;
     position: absolute;
     bottom: 0px;
     left: 0px;
     background-color: #ffffff;
+}
+
+body #container {
+    padding: 20px 100px;
+}
+
+body #container h3 {
+    font-size: 35px;
+    color: #FFF;
 }

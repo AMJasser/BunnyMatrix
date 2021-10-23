@@ -10,6 +10,9 @@
             href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Sarala:wght@400;700&display=swap"
             rel="stylesheet"
         />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
         <link rel="stylesheet" href="style.css" />
         <title>Bunng Matrix</title>
     </head>
@@ -24,6 +27,10 @@
                 </nav>
             </div>
         </header>
-        THE REST
+        <div id="container">
+            <h3>Data Metrics</h3>
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <script src="analyze.js"></script>
+        </div>
     </body>
 </html>
