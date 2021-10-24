@@ -63,7 +63,9 @@ router
     .post(
         upload.single("file"),
         asyncHandler(async (req, res, next) => {
-            const data = fs.readFileSync('./' + req.file.path, 'utf8');
+            var data = fs.readFileSync('./' + req.file.path, 'utf8');
+            data = data.replace(/^(.*)$/m, "date,kpi");
+            data = data.replace("\r", "");
             fs.writeFileSync("./public/uploads/" + req.file.filename + ".json", csvJSON(data));
             return res.redirect("/app/" + req.file.filename)
         })

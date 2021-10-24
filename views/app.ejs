@@ -22,17 +22,16 @@
                 <h2>*Company*</h2>
                 <nav>
                     <a class="selected">Data</a>
-                    <a>Prediction</a>
                 </nav>
             </div>
         </header>
         <div id="container">
             <h3>Data Metrics</h3>
-            <input type="date" id="startDate">
-            <input type="date" id="endDate">
+            from:<input type="date" id="startDate">
+            to:<input type="date" id="endDate">
             <input type="submit" onclick="restrictChart(myChart, document.getElementById('startDate').value, document.getElementById('endDate').value)">
             <canvas id="myChart" width="1000" height="500"></canvas>
-            <input type="date" id="xinput" onchange="userXInput()">
+            predict:<input type="date" id="xinput" onchange="userXInput()">
             <input type="text" id="youtput" readonly>
             <script>
                 var jsonData;

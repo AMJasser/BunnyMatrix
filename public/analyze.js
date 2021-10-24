@@ -7,8 +7,8 @@ function structureData() {
 
     jsonData.forEach(function (entry) {
         var newObject = {};
-        newObject.x = new Date(entry.Date);
-        newObject.y = parseFloat(entry.Weekly_Sales);
+        newObject.x = new Date(entry.date);
+        newObject.y = parseFloat(entry.kpi);
         finalData.push(newObject);
     });
 
