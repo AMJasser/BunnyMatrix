@@ -11,8 +11,7 @@ const router = express.Router({ mergeParams: true });
 router.get(
     "/",
     asyncHandler(async (req, res, next) => {
-        const jsonData = fs.readFileSync('./public/uploads/' + req.params.fileName + ".json");
-        return res.status(200).render("app", {fileName: req.params.fileName, jsonData: jsonData}, (err, html) => {
+        return res.status(200).render("app", {fileName: req.params.fileName}, (err, html) => {
             if (err) {
                 return next(new ErrorResponse("Problem Rendering", 500));
             } else {

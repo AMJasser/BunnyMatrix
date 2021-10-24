@@ -11,20 +11,41 @@ function structureData() {
     return finalData;
 }
 
+function manipulateTime(time, minTime) {
+    return (time - minTime) / 86400000000;
+}
+
+function revManTime(time, minTime) {
+    return (time * 86400000000) + minTime;
+}
+
+function startRegression(data) {
+    var fullData = [];
+    var minTime = data[0].x.getTime();
+
+    data.forEach(function(entry) {
+        var arr = [manipulateTime(entry.x.getTime(), minTime), entry.y];
+        fullData.push(arr);
+    });
+
+    const result = regression.linear(fullData);
+    return result;
+}
+
 function fixDataAndConfig(finalData, result) {
     var minTime = finalData[0].x.getTime();
 
-    const firstXPoint = (finalData[0].x.getTime() - minTime) / 86400000000;
-    const lastXPoint = (finalData[finalData.length - 1].x.getTime() - minTime) / 86400000000;
+    const firstXPoint = manipulateTime(finalData[0].x.getTime(), minTime);
+    const lastXPoint = manipulateTime(finalData[finalData.length - 1].x.getTime(), minTime);
 
     const firstYPredict = result.predict(firstXPoint);
     const lastYPredict = result.predict(lastXPoint);
 
     const lineOfFit = [{
-        x: (firstXPoint * 86400000000) + minTime,
+        x: revManTime(firstXPoint, minTime),
         y: firstYPredict[1]
     }, {
-        x: (lastXPoint * 86400000000) + minTime,
+        x: revManTime(lastXPoint, minTime),
         y: lastYPredict[1]
     }];
 
@@ -39,7 +60,9 @@ function fixDataAndConfig(finalData, result) {
             {
                 type: "line",
                 label: "Line of Best Fit",
-                data: lineOfFit
+                data: lineOfFit,
+                backgroundColor: "rgb(255, 255, 132)",
+                borderColor: "rgb(255, 255, 132)"
             }
         ],
     };
@@ -74,21 +97,6 @@ function fixDataAndConfig(finalData, result) {
     var ctx = document.getElementById("myChart").getContext("2d");
     Chart.defaults.color = "#FFF"
     var myChart = new Chart(ctx, config);
-}
-
-function startRegression(data) {
-    var fullData = [];
-    var minTime = data[0].x.getTime();
-
-    data.forEach(function(entry) {
-        var arr = [(entry.x.getTime() - minTime) / 86400000000, entry.y];
-        fullData.push(arr);
-    });
-
-    console.log(fullData);
-
-    const result = regression.linear(fullData);
-    return result;
 }
 
 function run() {
