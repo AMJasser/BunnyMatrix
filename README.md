@@ -36,4 +36,4 @@ Server running in undefined mode on port 5000
 > head to [localhost:5000](http://localhost:5000/)
 
 7.  Using the Website
-> The website will ask you to upload a CSV file. We conveniently provided a CSV file to use in the website. It is in the project directory.
+> The website will ask you to upload a CSV file. We conveniently provided a CSV file, called "new_walmart.csv", to use in the website. It is in the project directory.
