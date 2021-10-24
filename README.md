@@ -11,7 +11,7 @@ git clone https://github.com/AMJasser/BunnyMatrix.git
 
 2.  Head Inside the Directory
 ```
-cd dumpling_metrics/
+cd BunnyMatrix/
 ```
 
 3.  Install Packages
