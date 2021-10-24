@@ -9,16 +9,21 @@ The following steps are done in Command Line.
 git clone https://github.com/AMJasser/dumpling_metrics.git
 ```
 
-2.  Install packages
+2.  Head Inside the Directory
+```
+cd dumpling_metrics/
+```
+
+3.  Install Packages
 ```
 npm install
 ```
 
-3.  Make Uploads Folder
+4.  Make Uploads Folder
 > Open the project directory and go inside the "public" directory.
 > Make a folder inside public called "uploads"
 
-4.  Run the Server
+5.  Run the Server
 ```
 node app.js
 ```
@@ -27,5 +32,5 @@ you should see:
 Server running in undefined mode on port 5000
 ```
 
-5.  Open the website
+6.  Open the website
 > head to [localhost:5000](http://localhost:5000/)
