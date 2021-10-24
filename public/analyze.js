@@ -1,5 +1,6 @@
 var minTime;
 var finalResult;
+var myChart;
 
 function structureData() {
     var finalData = [];
@@ -107,6 +108,8 @@ function fixDataAndConfig(finalData, result) {
                             );
                         },
                     },
+                    /*min: new Date("08/01/2010").getTime(),
+                    max: new Date("01/01/2011").getTime()*/
                 },
             },
         },
@@ -114,7 +117,7 @@ function fixDataAndConfig(finalData, result) {
 
     var ctx = document.getElementById("myChart").getContext("2d");
     Chart.defaults.color = "#FFF";
-    var myChart = new Chart(ctx, config);
+    myChart = new Chart(ctx, config);
 }
 
 function run() {
@@ -133,4 +136,10 @@ function userXInput() {
     yValue = finalResult.predict(manipulateTime(xValue, minTime));
 
     output.value = yValue[1];
+}
+
+function restrictChart(chart, startDate, endDate) {
+    chart.options.scales.x.min = new Date(startDate).getTime();
+    chart.options.scales.x.max =  new Date(endDate).getTime();
+    chart.update();
 }
