@@ -1,4 +1,4 @@
-# dumpling_metrics
+# BunnyMatrix
 
 This application uses nodejs. Please install it at: [download nodejs](https://nodejs.org/en/download/)
 
@@ -6,7 +6,7 @@ The following steps are done in Command Line.
 
 1.  Clone the Repo
 ```
-git clone https://github.com/AMJasser/dumpling_metrics.git
+https://github.com/AMJasser/BunnyMatrix.git
 ```
 
 2.  Head Inside the Directory
