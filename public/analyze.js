@@ -35,7 +35,6 @@ function startRegression(data) {
 }
 
 function fixDataAndConfig(finalData, result) {
-
     const firstXPoint = manipulateTime(finalData[0].x.getTime(), minTime);
     const lastXPoint = manipulateTime(
         finalData[finalData.length - 1].x.getTime(),
