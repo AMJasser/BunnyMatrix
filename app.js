@@ -10,6 +10,7 @@ dotenv.config({ path: "./config/config.env" });
 
 const index = require("./routes/index");
 const upload = require("./routes/upload");
+const appView = require("./routes/app");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/upload", upload);
+app.use("/app/:fileName", appView);
 
 app.use(errorHandler);
 
