@@ -28,7 +28,9 @@
         </header>
         <div id="container">
             <h3>Data Metrics</h3>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="1000" height="500"></canvas>
+            <input type="date" id="xinput" onchange="userXInput()">
+            <input type="text" id="youtput" readonly>
             <script>
                 var jsonData;
                 function readTextFile(file, callback) {
