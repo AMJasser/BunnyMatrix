@@ -6,7 +6,7 @@ The following steps are done in Command Line.
 
 1.  Clone the Repo
 ```
-https://github.com/AMJasser/BunnyMatrix.git
+git clone https://github.com/AMJasser/BunnyMatrix.git
 ```
 
 2.  Head Inside the Directory
