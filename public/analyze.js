@@ -28,7 +28,7 @@ function startRegression(data) {
         fullData.push(arr);
     });
 
-    const result = regression.linear(fullData);
+    const result = regression.polynomial(fullData, {order: 7});
     return result;
 }
 
@@ -38,16 +38,30 @@ function fixDataAndConfig(finalData, result) {
     const firstXPoint = manipulateTime(finalData[0].x.getTime(), minTime);
     const lastXPoint = manipulateTime(finalData[finalData.length - 1].x.getTime(), minTime);
 
+    console.log(lastXPoint);
+
     const firstYPredict = result.predict(firstXPoint);
     const lastYPredict = result.predict(lastXPoint);
 
-    const lineOfFit = [{
+    const lineOfFitOriginal = [{
         x: revManTime(firstXPoint, minTime),
         y: firstYPredict[1]
     }, {
         x: revManTime(lastXPoint, minTime),
         y: lastYPredict[1]
     }];
+
+    const lineOfFit = [];
+    const divisions = 100;
+    let time_div = (lastXPoint - firstXPoint) / divisions;
+
+    for (let i = 0; i < divisions; i++) {
+        let specific_x = firstXPoint + time_div * i;
+        let best_fit_point_dict = {};
+        best_fit_point_dict["x"] = revManTime(specific_x, minTime);
+        best_fit_point_dict["y"] = result.predict(specific_x)[1];
+        lineOfFit.push(best_fit_point_dict);
+    }
 
     data = {
         datasets: [
