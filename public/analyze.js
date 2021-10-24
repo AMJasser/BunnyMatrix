@@ -38,8 +38,6 @@ function fixDataAndConfig(finalData, result) {
     const firstXPoint = manipulateTime(finalData[0].x.getTime(), minTime);
     const lastXPoint = manipulateTime(finalData[finalData.length - 1].x.getTime(), minTime);
 
-    console.log(lastXPoint);
-
     const firstYPredict = result.predict(firstXPoint);
     const lastYPredict = result.predict(lastXPoint);
 
