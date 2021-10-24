@@ -32,5 +32,8 @@ you should see:
 Server running in undefined mode on port 5000
 ```
 
-6.  Open the website
+6.  Open the Website
 > head to [localhost:5000](http://localhost:5000/)
+
+7.  Using the Website
+> The website will ask you to upload a CSV file. We conveniently provided a CSV file to use in the website in the project directory.
